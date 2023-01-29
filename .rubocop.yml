@@ -1,0 +1,53 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 3.1.1
+  NewCops: enable
+  Exclude:
+    - db/schema.rb
+    - bin/**
+    - node_modules/**/*
+    - vendor/**/*
+    - Gemfile
+    - Gemfile.lock
+    - tmp/**/*
+    - db/data_schema.rb
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Rails/NotNullColumn:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+RSpec/Rails/InferredSpecType:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: true
+  Max: 2
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 25
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - config/initializers/devise.rb
+
+RSpec/NestedGroups:
+  Enabled: true
+  Max: 6
+
+RSpec/InstanceVariable:
+  Enabled: false
