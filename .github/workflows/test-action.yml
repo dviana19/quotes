@@ -24,6 +24,18 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
+      - name: Calculate Assets Signature
+        run: echo `find app/assets app/javascript -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum` > assets_hash
+      - uses: actions/cache@v3
+        with:
+          path: |
+            public/packs-test
+            public/assets
+            tmp/cache/assets
+            tmp/cache/webpacker
+          key: ${{ runner.os }}-bnpl-${{ hashFiles('assets_hash') }}
+      - name: Compile
+        run: bundle exec rake assets:precompile
       - name: Setup database
         env:
           PG_DATABASE: quotes_db_test
