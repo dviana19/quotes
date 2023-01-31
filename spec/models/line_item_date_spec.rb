@@ -20,7 +20,8 @@ RSpec.describe LineItemDate, type: :model do
   describe 'with public object methods' do
     context 'when executes methods correctly' do
       context 'with previous date' do
-        let(:line_item_date) { create(:line_item_date) }
+        let(:quote) { create(:quote) }
+        let(:line_item_date) { create(:line_item_date, quote:) }
 
         before do
           @line1 = create(:line_item_date, date: Time.zone.today - 10.days, quote:)
