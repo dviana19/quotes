@@ -36,22 +36,12 @@ jobs:
           key: ${{ runner.os }}-bnpl-${{ hashFiles('assets_hash') }}
       - name: Compile
         run: bundle exec rake assets:precompile
-      - name: Setup database
+      - name: Build and test with rspec
         env:
-          PG_DATABASE: quotes_db_test
-          PG_HOST: localhost
-          PG_USER: postgres
-          PG_PASSWORD: password
+          DATABASE_URL: postgres://postgres:password@localhost/quotes_db_test
           RAILS_ENV: test
           WITH_COVERAGE: true
           DISABLE_SPRING: 1
-        run: bundle exec rails db:prepare RAILS_ENV=test
-      - name: Build and test with rspec
-        env:
-          PG_DATABASE: quotes_db_test
-          PG_HOST: localhost
-          PG_USER: postgres
-          PG_PASSWORD: password
-          RAILS_ENV: test
         run: |
+          bundle exec rails db:prepare RAILS_ENV=test
           bundle exec rspec spec

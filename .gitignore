@@ -37,3 +37,8 @@
 
 /coverage
 /.vscode
+
+# Environment files that may contain sensitive data
+.env*
+!*.example
+!*.cicd

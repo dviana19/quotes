@@ -14,11 +14,6 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      PG_HOST: db
-      PG_DATABASE: quotes_db_test
-      PG_USER: postgres
-      PG_PASSWORD: password
   redis:
     image: redis:6.2.6-alpine
     hostname: redis
