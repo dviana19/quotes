@@ -36,7 +36,7 @@ jobs:
         run: bundle exec rails db:prepare RAILS_ENV=test
       - name: Build and test with rspec
         env:
-          PG_DATABASE: postgres
+          PG_DATABASE: quotes_db_test
           PG_HOST: localhost
           PG_USER: postgres
           PG_PASSWORD: password
