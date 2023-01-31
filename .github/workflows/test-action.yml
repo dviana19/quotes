@@ -1,4 +1,4 @@
-name: Ruby
+name: Test CI
 
 on:
   push:
@@ -8,16 +8,38 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
     steps:
       - uses: actions/checkout@v3
       - name: Set up Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
         with:
-          ruby-version: '3.1'
+          ruby-version: '3.2'
+          bundler-cache: true
       - name: Install dependencies
         run: bundle install
-      - name: Run tests
-        run: bundle exec rake
+      - name: Setup database
+        env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
+          RAILS_ENV: test
+          WITH_COVERAGE: true
+          DISABLE_SPRING: 1
+        run: bundle exec rails db:prepare
+      - name: Build and test with rspec
+        env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
+          RAILS_ENV: test
+        run: |
+          bundle exec rspec spec
