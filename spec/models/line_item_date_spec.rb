@@ -11,6 +11,7 @@ RSpec.describe LineItemDate, type: :model do
 
   describe 'with validations' do
     it { is_expected.to validate_presence_of(:date) }
+    it { is_expected.to validate_uniqueness_of(:date).scoped_to(:quote_id) }
   end
 
   describe 'with assocations' do

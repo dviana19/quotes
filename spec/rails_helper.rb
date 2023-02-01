@@ -114,6 +114,7 @@ RSpec.configure do |config|
 
   # devise controllers
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include ActionView::Helpers::TranslationHelper, type: :feature
 
   # Use the specified formatter
   config.formatter = :documentation # :progress, :html, :textmate

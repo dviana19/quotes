@@ -17,4 +17,17 @@ RSpec.describe Quote, type: :model do
     it { is_expected.to belong_to(:company) }
     it { is_expected.to have_many(:line_item_dates) }
   end
+
+  describe 'with public object methods' do
+    context 'when executes methods correctly' do
+      context 'with total price' do
+        let(:quote) { create(:quote) }
+        let(:line_item_date) { create(:line_item_date, quote:) }
+
+        before { create_list(:line_item, 2, unit_price: 20, quantity: 5, line_item_date:) }
+
+        it { expect(quote.total_price).to eq 200 }
+      end
+    end
+  end
 end
