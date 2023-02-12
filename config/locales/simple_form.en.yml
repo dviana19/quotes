@@ -1,6 +1,9 @@
 en:
   simple_form:
     placeholders:
+      user:
+        email: Email
+        password: Password
       quote:
         name: Name of your quote
       line_item:
