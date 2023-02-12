@@ -3,6 +3,8 @@
 
 That's great for developers that want to write their full stack application but don't want to have trouble writing or learning React/Typescript/Vue and the whole modern stack frontend developers use these days.
 
+Real time updates with turbo-stream which abstracts all the javascript part from Action Cable and turbo-frames for replacing only parts of pages gives your rails application the look and feel of any other app writen in React or any JS library.
+
 So, give it a chance and try it yourself to build something with it.
 ###### Following the tutorial:
 I wrote this application based on this [tutorial](https://www.hotrails.dev/turbo-rails) with some changes that combined serve as the foundation for all my Rails projects.
